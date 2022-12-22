@@ -77,23 +77,23 @@ for i in range(1,page):
         base_FAQ_link = f"https://www.glassdoor.co.in{Link_of_FAQ}"   
         base_Overview_link = f"https://www.glassdoor.co.in{Link_of_Overview}"   
 
-        # req1 = requests.get(base_Review_link,headers=headers)
-        # soup1 = BeautifulSoup(req1.content,'html.parser')
+        req1 = requests.get(base_Review_link,headers=headers)
+        soup1 = BeautifulSoup(req1.content,'html.parser')
 
-        # General_count = soup1.find_all('div',class_='count')
-        # for k,mixed in enumerate(General_count):
-        #     if k==4:
-        #         Reviews_count=mixed.text
-        #     elif k==5:
-        #         Jobs_count=mixed.text
-        #     elif k==6:
-        #         Salaries_count=mixed.text
-        #     elif k==7:
-        #         Interviews_count=mixed.text
-        #     elif k==8:
-        #         Benefits_count=mixed.text
-        #     elif k==9:
-        #         Photos_count=mixed.text
+        General_count = soup1.find_all('div',class_='count')
+        for k,mixed in enumerate(General_count):
+            if k==4:
+                Reviews_count=mixed.text
+            elif k==5:
+                Jobs_count=mixed.text
+            elif k==6:
+                Salaries_count=mixed.text
+            elif k==7:
+                Interviews_count=mixed.text
+            elif k==8:
+                Benefits_count=mixed.text
+            elif k==9:
+                Photos_count=mixed.text
         
         req2 = requests.get(base_Overview_link,headers=headers)
         soup2 = BeautifulSoup(req2.content,'html.parser')
@@ -105,71 +105,71 @@ for i in range(1,page):
             elif m==1:
                 Approve_of_CEO =mixed_1.text
 
-        # try:
-        # Web = soup2.find('div',class_="d-flex align-items-center").text
-        # # except:
-        # #     Web='None'
-        # print(Web)
+        try:
+            Web = soup2.find('div',class_="d-flex align-items-center").text
+        except:
+            Web='None'
+        print(Web)
 
-        # try:
-        #     Web = soup2.find('a',class_="css-1hg9omi css-1cnqmgc")['href']
-        # except:
-        #     Web='None'
-        # try:
-        #     Com = soup2.find('p',class_="d-flex flex-column flex-md-row css-dwl48b css-1cnqmgc")
-        #     Comp = Com.find('span').text
-        # except:
-        #     Comp="None"
+        try:
+            Web = soup2.find('a',class_="css-1hg9omi css-1cnqmgc")['href']
+        except:
+            Web='None'
+        try:
+            Com = soup2.find('p',class_="d-flex flex-column flex-md-row css-dwl48b css-1cnqmgc")
+            Comp = Com.find('span').text
+        except:
+            Comp="None"
 
-        # General_info = soup2.find_all('div',class_='css-19hiur5 css-dwl48b css-1cnqmgc')
+        General_info = soup2.find_all('div',class_='css-19hiur5 css-dwl48b css-1cnqmgc')
         
-        # for j,general in enumerate(General_info):
-        #     if j==0:
-        #         HQ_h=general.text
-        #     elif j==1:
-        #         company_size=general.text
-        #     elif j==2:
-        #         Founded=general.text
-        #     elif j==3:
-        #         Company_type=general.text
-        #     elif j==4:
-        #         Revenue=general.text
+        for j,general in enumerate(General_info):
+            if j==0:
+                HQ_h=general.text
+            elif j==1:
+                company_size=general.text
+            elif j==2:
+                Founded=general.text
+            elif j==3:
+                Company_type=general.text
+            elif j==4:
+                Revenue=general.text
 
-        # req3 = requests.get(base_Interview_link,headers=headers)
-        # soup3 = BeautifulSoup(req3.content,'html.parser')
-        # try:
-        #     Diff_level = soup3.find('div',class_='align-self-center').text
-        # except:
-        #     Diff_level = 'None'
+        req3 = requests.get(base_Interview_link,headers=headers)
+        soup3 = BeautifulSoup(req3.content,'html.parser')
+        try:
+            Diff_level = soup3.find('div',class_='align-self-center').text
+        except:
+            Diff_level = 'None'
 
-#         glassdoor_d ={
-#             'Name':name.strip(),
-#             'Industry':industry_name.strip(),
-#             'Location Link':base_location_link.strip(),
-#             'Size (Employees)':company_size.strip(),
-#             'HQ':HQ_h.strip(),
-#             'Founded':Founded.strip(),
-#             'Typr of Company':Company_type.strip(),
-#             'Revenue':Revenue.strip(),
-#             'Website':Web.strip(),
-#             'Competitors':Comp.strip(),
-#             'Overall Rating':rating.strip(),
-#             'Reviews Count':Reviews_count.strip(),
-#             'Jobs Count':Jobs_count.strip(),
-#             'Salaries Count':Salaries_count.strip(),
-#             'Interviews Count':Interviews_count.strip(),
-#             'Benefits Count':Benefits_count.strip(),
-#             'Photos Count':Photos_count.strip(),
-#             'Reviews URL':base_Review_link.strip(),
-#             'Salaries URL':base_Salary_link.strip(),
-#             'Jobs URL':base_Job_link.strip(),            
-#             'Benifits URL':base_Benifit_link.strip(),            
-#             'Photos URL':base_Photo_link.strip(),            
-#             'Interview URL':base_Interview_link.strip(),            
-#             'FAQ URL':base_FAQ_link.strip(),            
-#             'Overview URL':base_Overview_link.strip()            
-#         }
-#         glassdoor_data.append(glassdoor_d)
+        glassdoor_d ={
+            'Name':name.strip(),
+            'Industry':industry_name.strip(),
+            'Location Link':base_location_link.strip(),
+            'Size (Employees)':company_size.strip(),
+            'HQ':HQ_h.strip(),
+            'Founded':Founded.strip(),
+            'Typr of Company':Company_type.strip(),
+            'Revenue':Revenue.strip(),
+            'Website':Web.strip(),
+            'Competitors':Comp.strip(),
+            'Overall Rating':rating.strip(),
+            'Reviews Count':Reviews_count.strip(),
+            'Jobs Count':Jobs_count.strip(),
+            'Salaries Count':Salaries_count.strip(),
+            'Interviews Count':Interviews_count.strip(),
+            'Benefits Count':Benefits_count.strip(),
+            'Photos Count':Photos_count.strip(),
+            'Reviews URL':base_Review_link.strip(),
+            'Salaries URL':base_Salary_link.strip(),
+            'Jobs URL':base_Job_link.strip(),            
+            'Benifits URL':base_Benifit_link.strip(),            
+            'Photos URL':base_Photo_link.strip(),            
+            'Interview URL':base_Interview_link.strip(),            
+            'FAQ URL':base_FAQ_link.strip(),            
+            'Overview URL':base_Overview_link.strip()            
+        }
+        glassdoor_data.append(glassdoor_d)
 
-# df = pd.DataFrame(glassdoor_data)
-# df.to_csv('Glassdoor_data_sample.csv')
+df = pd.DataFrame(glassdoor_data)
+df.to_csv('Glassdoor_data_sample.csv')
